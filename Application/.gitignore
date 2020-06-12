@@ -1,0 +1,6 @@
+_Result
+**/x64
+**/obj
+.vs
+**/*.user
+**/*.filters

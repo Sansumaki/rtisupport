@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="CopyDependencies" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="CopyDependencies">
+		<PropertyGroup>
+			<DestDir>$(OutDir)</DestDir>
+		</PropertyGroup>
+    <ItemGroup>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\nddsc.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\nddscore.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\nddscpp2.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\nddsmetp.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rticonnextmsgc.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtidlc.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtirecordingservice.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtiroutingservice.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtirsinfrastructure.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtixml2.dll"/>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='Debug'">
+      <FilesToCopySource Include="$(NDDSHOMELIB)\nddscd.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\nddscored.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\nddscpp2d.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\nddsmetpd.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rticonnextmsgcd.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtidlcd.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtirecordingserviced.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtiroutingserviced.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtirsinfrastructured.dll"/>
+      <FilesToCopySource Include="$(NDDSHOMELIB)\rtixml2d.dll"/>
+    </ItemGroup>
+
+		<Message Importance="high" Text="************************************* BEGIN Copying files $(Configuration)|$(Platform) *************************************"/>
+
+		<Message Importance="high" Text="DestDir=$(DestDir)"/>
+
+		<Message Importance="high" Text="Source: '%(FilesToCopySource.Identity)'"/>
+		<Copy SourceFiles="@(FilesToCopySource)"
+				DestinationFolder="$(DestDir)"
+				SkipUnchangedFiles="true"
+				ContinueOnError="true"/>
+
+		<Message Importance="high" Text="************************************* END Copying files *************************************"/>
+
+	</Target>
+
+</Project>
