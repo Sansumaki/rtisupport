@@ -146,10 +146,15 @@
     <ClCompile Include="RecordingService.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ServiceAsLibExample.h" />
+    <ClInclude Include="RecordingService.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CopyDependencies.msbuild" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\lib\NLog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
