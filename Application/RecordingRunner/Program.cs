@@ -14,15 +14,30 @@ namespace RecordingRunner
         static bool _replayState;
         static Recorder _recordService;
         static Recorder _replayService;
+        static int _domainId = 0;
 
         static void Main(string[] args)
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Recorder Example");
-                Console.WriteLine($"(R) {(_recordingState ? "Stop" : "Start")} Recording, (P) {(_replayState ? "Stop" : "Start")} Replay, (L) Replay via Batch, (C) Clear Database, (Q) Quit");
+                Console.WriteLine($"Recorder Example on Domain ({_domainId})");
+                Console.WriteLine($"(R) {(_recordingState ? "Stop" : "Start")} Recording, (P) {(_replayState ? "Stop" : "Start")} Replay, (L) Replay via Batch, (C) Clear Database, (D) Change Domain, (Q) Quit");
                 var select = Console.ReadKey();
+                if (select.Key == ConsoleKey.D)
+                {
+                    while (true)
+                    {
+                        Console.Write("Enter Domain [0-99] (Enter to confirm): ");
+                        var domain = Console.ReadLine();
+                        if (int.TryParse(domain, out var domainNumber) && domainNumber >= 0 && domainNumber <= 99)
+                        {
+                            _domainId = domainNumber;
+                            break;
+                        }
+                        Console.WriteLine("Domain Number invalid.");
+                    }
+                }
                 if (select.Key == ConsoleKey.R)
                 {
                     if (_recordingState && _recordService != null)
@@ -44,7 +59,7 @@ namespace RecordingRunner
                     {
                         try
                         {
-                            _recordService = new Recorder(RecorderModes.RECORD, 0, "recorder_config.xml", "Recording_Service", USR_STORAGE);
+                            _recordService = new Recorder(RecorderModes.RECORD, _domainId, "recorder_config.xml", "Recording_Service", USR_STORAGE);
                             _recordService.Start();
                             _recordingState = true;
                         }
@@ -77,7 +92,7 @@ namespace RecordingRunner
                     {
                         try
                         {
-                            _replayService = new Recorder(RecorderModes.REPLAY, 0, "replay_config.xml", "Replay_Service", USR_STORAGE);
+                            _replayService = new Recorder(RecorderModes.REPLAY, _domainId, "replay_config.xml", "Replay_Service", USR_STORAGE);
                             _replayService.Start();
                             _replayState = true;
                         }

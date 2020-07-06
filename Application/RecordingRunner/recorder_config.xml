@@ -32,6 +32,7 @@
                     <execution_dir_expression>$(DATABASE_DIR)</execution_dir_expression>
                     <filename_expression>rti_recorder_default.dat</filename_expression>
                 </fileset>
+                <sql_initialization_string>PRAGMA SYNCHRONOUS = OFF; PRAGMA journal_mode=WAL;</sql_initialization_string>
             </sqlite>
         </storage>
         

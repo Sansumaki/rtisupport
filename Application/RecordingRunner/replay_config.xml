@@ -27,6 +27,7 @@
             <sqlite>
                 <storage_format>XCDR_AUTO</storage_format>
                 <database_dir>$(DATABASE_DIR)</database_dir>
+              <sql_initialization_string>PRAGMA SYNCHRONOUS = OFF; PRAGMA journal_mode=WAL;</sql_initialization_string>
             </sqlite>
         </storage>
       
