@@ -1,4 +1,4 @@
-﻿using RtiDDSRecording;
+using RtiDDSRecording;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -8,7 +8,7 @@ namespace RecordingRunner
     class Program
     {
         const string RTI_PATH = @"C:\Program Files\rti_connext_dds-6.0.1";
-        const string USR_STORAGE = @"C:\Users\schs\Documents\rti_workspace\6.0.1\user_config\recording_service";
+        private static string USR_STORAGE = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"livesim_recording\cdr_recording");
 
         static bool _recordingState;
         static bool _replayState;
