@@ -15,8 +15,6 @@ namespace RecordingRunner
         static Recorder _recordService;
         static Recorder _replayService;
 
-        private static int count = 1;
-
         static void Main(string[] args)
         {
             while (true)
@@ -46,8 +44,7 @@ namespace RecordingRunner
                     {
                         try
                         {
-                            count++;
-                            _recordService = new Recorder(RecorderModes.RECORD, 0, "recorder_config.xml", "Recording_Service", USR_STORAGE + count);
+                            _recordService = new Recorder(RecorderModes.RECORD, 0, "recorder_config.xml", "Recording_Service", USR_STORAGE);
                             _recordService.Start();
                             _recordingState = true;
                         }
@@ -80,7 +77,7 @@ namespace RecordingRunner
                     {
                         try
                         {
-                            _replayService = new Recorder(RecorderModes.REPLAY, 0, "replay_config.xml", "Replay_Service", USR_STORAGE + count);
+                            _replayService = new Recorder(RecorderModes.REPLAY, 0, "replay_config.xml", "Replay_Service", USR_STORAGE);
                             _replayService.Start();
                             _replayState = true;
                         }
