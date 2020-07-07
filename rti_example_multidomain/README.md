@@ -2,12 +2,12 @@
 
 ## Concept
 
-*Recording Service* can be run as a library within your executable code. This
+_Recording Service_ can be run as a library within your executable code. This
 example shows how to do that in a very simple way in C++11.
 
 ## Example Description
 
-This example shows how to run *Recording Service* as a library. The code first
+This example shows how to run _Recording Service_ as a library. The code first
 parses the command-line arguments provided by the user: the role to be used (it
 can be set as a Recorder or a Replay instance) and the DDS domain ID to be used.
 This domain ID will be used for user-data (it will be the domain ID base) and
@@ -19,15 +19,15 @@ The configuration name is the same in both configurations.
 
 The following files are part of the example:
 
--   `ServiceAsLibExample.cxx`: this file contains the example C++ code that
-    processes the command-line arguments and then creates the *Recording
-    Service* instance.
+- `ServiceAsLibExample.cxx`: this file contains the example C++ code that
+  processes the command-line arguments and then creates the _Recording
+  Service_ instance.
 
--   `recorder_config.xml`: a simple configuration file for the recorder role.
+- `recorder_config.xml`: a simple configuration file for the recorder role.
 
--   `replay_config.xml`: a simple configuration file for the replay role. To
-    work properly, it expects data to have been recorded with the recorder
-    configuration first.
+- `replay_config.xml`: a simple configuration file for the replay role. To
+  work properly, it expects data to have been recorded with the recorder
+  configuration first.
 
 > **Note**:
 >
@@ -42,17 +42,17 @@ The following files are part of the example:
 In order to build this example, you need to provide the following variables to
 `CMake`:
 
--   `CONNEXTDDS_DIR`: pointing to the installation of RTI Connext DDS to be
-    used.
+- `CONNEXTDDS_DIR`: pointing to the installation of RTI Connext DDS to be
+  used.
 
--   `CONNEXTDDS_ARCH`: the RTI Connext DDS Target architecture to be used in
-    your system.
+- `CONNEXTDDS_ARCH`: the RTI Connext DDS Target architecture to be used in
+  your system.
 
--   `CMAKE_BUILD_TYPE`: specifies the build mode. Valid values are Release
-    and Debug.
+- `CMAKE_BUILD_TYPE`: specifies the build mode. Valid values are Release
+  and Debug.
 
--   `BUILD_SHARED_LIBS`: specifies the link mode. Valid values are ON for
-    dynamic linking and OFF for static linking.
+- `BUILD_SHARED_LIBS`: specifies the link mode. Valid values are ON for
+  dynamic linking and OFF for static linking.
 
 Build the example code by running the following command:
 
@@ -63,6 +63,8 @@ cmake -DCONNEXTDDS_DIR=<connext dir> -DCONNEXTDDS_ARCH=<connext architecture>
       -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
 cmake --build .
 ```
+
+> > > > > > > > > RUAG >> runcmake.cmd (cmake must be in path)
 
 > **Note**:
 >
@@ -78,9 +80,9 @@ cmake -DCONNEXTDDS_DIR=<connext dir> -DCONNEXTDDS_ARCH=<connext architecture>
       -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON .. -A x64
 ```
 
-This will produce a binary directory (*build*) where the `ServiceAsLibExample`
+This will produce a binary directory (_build_) where the `ServiceAsLibExample`
 application can be found. The XML files in the source directory are also copied
-over to this binary directory so that *Recording Service* can be run directly
+over to this binary directory so that _Recording Service_ can be run directly
 from this directory as well.
 
 > **Note**:
@@ -117,14 +119,14 @@ loading path (e.g. `LD_LIBRARY_PATH` on Linux).
 
 The following command-line parameters are expected by the application:
 
--   The service role, Recorder or Replay, one of the values: `{record|replay}`.
+- The service role, Recorder or Replay, one of the values: `{record|replay}`.
 
--   The DDS domain ID (integer) where to run the example. This domain ID will be
-    used both as the domain ID offset for user-data domain participants in the
-    configuration, and to set the administration and monitoring domain IDs.
+- The DDS domain ID (integer) where to run the example. This domain ID will be
+  used both as the domain ID offset for user-data domain participants in the
+  configuration, and to set the administration and monitoring domain IDs.
 
--   (Optionally) The time in seconds the application should run. The default is
-    60 seconds, if not specified.
+- (Optionally) The time in seconds the application should run. The default is
+  60 seconds, if not specified.
 
 To run the example in Recorder mode, do:
 
