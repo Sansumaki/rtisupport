@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.1/rti_recording_service.xsd">
+
+    <types>
+        <include file="types.xml" />
+    </types>
+
+    <recording_service name="RuagExampleRecorder">
+        <administration>
+            <enabled>1</enabled>
+        </administration>
+        <monitoring>
+            <enabled>0</enabled>
+        </monitoring>
+        <storage>
+            <sqlite>
+                <storage_format>XCDR_AUTO</storage_format>
+                <fileset>
+                    <workspace_dir></workspace_dir>
+                    <execution_dir_expression>ruag_recording</execution_dir_expression>
+                    <filename_expression>recording_data.dat</filename_expression>
+                </fileset>
+                <overwrite_policy_kind>OVERWRITE</overwrite_policy_kind>
+                <sql_initialization_string>PRAGMA SYNCHRONOUS = OFF; PRAGMA JOURNAL_MODE = WAL;</sql_initialization_string>
+            </sqlite>
+        </storage>
+
+        <!--  Top-level domain settings -->
+        <domain_participant name="SquareParticipant">
+            <domain_id>50</domain_id>
+            <participant_qos base_name="RuagExample::FastClosingParticipant" />
+        </domain_participant>
+
+        <domain_participant name="CircleParticipant">
+            <domain_id>60</domain_id>
+            <participant_qos base_name="RuagExample::FastClosingParticipant" />
+        </domain_participant>
+
+        <domain_participant name="TriangleParticipant">
+            <domain_id>70</domain_id>
+            <participant_qos base_name="RuagExample::FastClosingParticipant" />
+        </domain_participant>
+
+        <session name="RecordSession">
+            <thread_pool>
+                <!-- Workers/threads to handle tasks -->
+                <size>3</size>
+            </thread_pool>
+            <topic_group name="RecordSquare" participant_ref="SquareParticipant">
+                <allow_topic_name_filter>Square</allow_topic_name_filter>
+                <deny_topic_name_filter>rti/*</deny_topic_name_filter>
+                <datareader_qos base_name="BuiltinQosLib::Generic.StrictReliable" />
+            </topic_group>
+            <topic_group name="RecordCircle" participant_ref="CircleParticipant">
+                <allow_topic_name_filter>Circle</allow_topic_name_filter>
+                <deny_topic_name_filter>rti/*</deny_topic_name_filter>
+                <datareader_qos base_name="BuiltinQosLib::Generic.StrictReliable" />
+            </topic_group>
+            <topic_group name="RecordTriangle" participant_ref="TriangleParticipant">
+                <allow_topic_name_filter>Triangle</allow_topic_name_filter>
+                <deny_topic_name_filter>rti/*</deny_topic_name_filter>
+                <datareader_qos base_name="BuiltinQosLib::Generic.StrictReliable" />
+            </topic_group>
+        </session>
+    </recording_service>
+</dds>
